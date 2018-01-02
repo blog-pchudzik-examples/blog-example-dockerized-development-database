@@ -5,14 +5,10 @@ set -e
 DATADIR="/var/lib/mysql"
 
 mysql_install_db --datadir="$DATADIR" --rpm
-
-ls -al $DATADIR
 chown -R mysql:mysql $DATADIR
 
 gosu mysql mysqld&
 PID="$!"
-
-ls -al /
 
 echo "Wiating for mysql to start"
 while ! mysqladmin ping --silent; do
